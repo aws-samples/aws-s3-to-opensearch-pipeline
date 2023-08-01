@@ -1,0 +1,8 @@
+black
+isort
+flake8
+flake8-annotations
+flake8-docstrings
+pyspark
+opensearch-py
+boto3
