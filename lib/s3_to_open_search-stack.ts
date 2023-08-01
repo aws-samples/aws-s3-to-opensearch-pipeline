@@ -35,8 +35,8 @@ export default class S3ToOpenSearchStack extends cdk.Stack {
     constructor(scope: Construct, id: string, props?: cdk.StackProps) {
         super(scope, id, props);
 
-        if (configs.glueTableName === 'placeholder' || configs.glueSchemaName === 'placeholder' || configs.glueTableAccountId === 'placeholder') {
-            throw new Error('glueTableName, glueSchemaName and glueTableAccountId must be set in lib/configs');
+        if (configs.glueTableName === 'placeholder' || configs.glueSchemaName === 'placeholder' || configs.glueTableAccountId === 'placeholder' || configs.dateFilterColumnName === 'placeholder') {
+            throw new Error('glueTableName, glueSchemaName, glueTableAccountId and dateFilterColumnName must be set in lib/configs');
         }
 
         /// ////////////////////////////////////////
@@ -110,9 +110,9 @@ export default class S3ToOpenSearchStack extends cdk.Stack {
             removalPolicy: RemovalPolicy.DESTROY,
         });
 
-        this.domain = new Domain(this, 'OpenSearchDomain2', {
+        this.domain = new Domain(this, 'OpenSearchDomain', {
             version: EngineVersion.OPENSEARCH_2_7,
-            domainName: 'myosdomain2',
+            domainName: 'myosdomain',
             ebs: {
                 volumeSize: ebsVolumeSize,
                 volumeType: EbsDeviceVolumeType.GP3,
@@ -201,6 +201,7 @@ export default class S3ToOpenSearchStack extends cdk.Stack {
             blockPublicAccess: BlockPublicAccess.BLOCK_ALL,
             bucketKeyEnabled: true,
             encryption: BucketEncryption.KMS,
+            removalPolicy: RemovalPolicy.DESTROY,
         });
 
         s3Bucket.grantRead(lambdaRole);

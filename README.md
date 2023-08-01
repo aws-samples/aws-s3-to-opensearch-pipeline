@@ -36,7 +36,7 @@ cd aws-s3-to-opensearch-pipeline
 * Create a `venv`:
 
 ```shell
-python3.10 -m venv ./ && source venv/bin/activate
+python3.10 -m venv ./venv && source venv/bin/activate
 ```
 
 * Modify the following parameters in `lib/configs.ts`:
@@ -48,7 +48,7 @@ python3.10 -m venv ./ && source venv/bin/activate
 * Run the following command:
 
 ```shell
-npm install && npm run build && cdk deploy
+npm install && npm run build && cdk bootstrap && cdk deploy
 ```
 
 * Once the deployment is successful, you will have a new IAM role, ensure it has permissions to the glue table in

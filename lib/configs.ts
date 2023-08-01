@@ -6,7 +6,7 @@ const configs = {
     glueTableName: 'placeholder',
     glueSchemaName: 'placeholder',
     glueTableAccountId: 'placeholder',
-    dateFilterColumnName: 'snapshot_day',
+    dateFilterColumnName: 'placeholder',
 };
 
 export default configs;
