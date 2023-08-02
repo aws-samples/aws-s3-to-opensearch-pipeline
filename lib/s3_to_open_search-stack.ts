@@ -343,6 +343,9 @@ export default class S3ToOpenSearchStack extends cdk.Stack {
                 lambda_role_arn: lambdaRole.roleArn,
             },
             retryAttempts: 2,
+            layers: [
+                openSearchPyLayer,
+            ],
         });
 
         const eventRule = new Rule(this, 'ScheduleRule', {
